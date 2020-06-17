@@ -222,7 +222,7 @@ if CLIENT then
         vOff = 32;
       end -- move above to display items
       local amount = LocalPlayer():GetAmmoCount(weapon:GetSecondaryAmmoType());
-      U1HUD:DrawWeapon(x - hOff * scale, y - (32 + vOff) * scale, amount, secondary, game.GetAmmoMax(secondary), mode, scale, true);
+      U1HUD:DrawWeapon(x - hOff * scale, y - (32 + vOff) * scale, amount, secondary, game.GetAmmoMax(secondary), mode, scale, lastAmmoType > -1);
     end
   end
 
