@@ -103,10 +103,11 @@ if CLIENT then
     @param {number} ammunition type
     @param {number} ammunition amount
     @param {number|nil} mode
+    @param {number|nil} ammunition mode
     @param {number|nil} scale
     @param {boolean|nil} ignore < 10 ammo warning
   ]]--------------------------------------------------------------------
-  function U1HUD:DrawWeapon(x, y, clip1, ammoType, max, mode, scale, ignore)
+  function U1HUD:DrawWeapon(x, y, clip1, ammoType, max, mode, aMode, scale, ignore)
     if (clip1 <= -1) then return end
     x = x - math.floor(32 * scale);
     y = y - math.floor(32 * scale);
@@ -119,7 +120,6 @@ if CLIENT then
     local showBar = mode <= 0 or mode == 3; -- should display bar only
 
     -- Additional clip display
-    local aMode = U1HUD:GetAmmoMode();
     local clip = LocalPlayer():GetActiveWeapon():Clip1();
     local weapon = LocalPlayer():GetActiveWeapon();
     if (clip > -1 and weapon:GetPrimaryAmmoType() > 0 and not ignore and aMode > 0) then
@@ -211,7 +211,7 @@ if CLIENT then
     local offset = 64;
     if (mode >= 4) then offset = 0; end
     local clip1, primary, max = GetClip1();
-    U1HUD:DrawWeapon(x - offset * scale, y, clip1, primary, max, mode, scale);
+    U1HUD:DrawWeapon(x - offset * scale, y, clip1, primary, max, mode, U1HUD:GetAmmoMode(), scale);
     local secondary = weapon:GetSecondaryAmmoType();
     if (secondary > 0 and weapon:GetPrimaryAmmoType() > 0) then
       local hOff, vOff = 0, 0;
@@ -222,7 +222,7 @@ if CLIENT then
         vOff = 32;
       end -- move above to display items
       local amount = LocalPlayer():GetAmmoCount(weapon:GetSecondaryAmmoType());
-      U1HUD:DrawWeapon(x - hOff * scale, y - (32 + vOff) * scale, amount, secondary, game.GetAmmoMax(secondary), mode, scale, lastAmmoType > -1);
+      U1HUD:DrawWeapon(x - hOff * scale, y - (32 + vOff) * scale, amount, secondary, game.GetAmmoMax(secondary), mode, 0, scale, lastAmmoType > -1);
     end
   end
 

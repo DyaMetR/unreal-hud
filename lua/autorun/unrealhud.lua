@@ -1,8 +1,8 @@
 --[[------------
      Unreal
 Heads Up Display
- Version 2.0.2
-    17/06/20
+ Version 2.0.3
+    25/04/21
 By DyaMetR
 ]]--------------
 
@@ -11,7 +11,7 @@ By DyaMetR
 U1HUD = {};
 
 -- Version and patch notes
-U1HUD.Version = "2.0.2";
+U1HUD.Version = "2.0.3";
 
 
 --[[
