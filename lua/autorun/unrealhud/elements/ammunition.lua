@@ -32,7 +32,7 @@ if CLIENT then
     @param {string} material path
   ]]--------------------------------------------------------------------
   function U1HUD:AddAmmoIcon(ammoType, texture)
-    ICONS[game.GetAmmoID(ammoType)] = Material(texture);
+    ICONS[ammoType] = Material(texture);
   end
 
   --[[------------------------------------------------------------------
@@ -114,7 +114,7 @@ if CLIENT then
     surface.SetDrawColor(U1HUD.WHITE);
     surface.SetMaterial(U1HUD.CONTAINER);
     surface.DrawTexturedRect(x, y, math.ceil(32 * scale), math.ceil(32 * scale));
-    surface.SetMaterial(U1HUD:GetAmmoIcon(ammoType, ignore));
+    surface.SetMaterial(U1HUD:GetAmmoIcon(game.GetAmmoName(ammoType), ignore));
     surface.DrawTexturedRect(x, y, math.ceil(32 * scale), math.ceil(32 * scale));
 
     local showBar = mode <= 0 or mode == 3; -- should display bar only
