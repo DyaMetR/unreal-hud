@@ -21,9 +21,10 @@ if CLIENT then
     Material("unrealhud/og/sniper.png"),
   };
   local RED = Color(170, 0, 0);
+  local INVALID_AMMO = '';
 
   -- Variables
-  local lastAmmoType = -1;
+  local lastAmmoType = '';
   local i = 0;
 
   --[[------------------------------------------------------------------
@@ -222,7 +223,7 @@ if CLIENT then
         vOff = 32;
       end -- move above to display items
       local amount = LocalPlayer():GetAmmoCount(weapon:GetSecondaryAmmoType());
-      U1HUD:DrawWeapon(x - hOff * scale, y - (32 + vOff) * scale, amount, secondary, game.GetAmmoMax(secondary), mode, 0, scale, lastAmmoType > -1);
+      U1HUD:DrawWeapon(x - hOff * scale, y - (32 + vOff) * scale, amount, secondary, game.GetAmmoMax(secondary), mode, 0, scale, lastAmmoType ~= INVALID_AMMO);
     end
   end
 
