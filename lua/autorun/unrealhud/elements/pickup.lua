@@ -79,7 +79,9 @@ if CLIENT then
   end);
 
   hook.Add("HUDWeaponPickedUp", "u1hud_weapon_pickup", function(weapon)
-    U1HUD:SetPickupMessage(DEFAULT_PREFIX .. language.GetPhrase(weapon:GetPrintName()) .. ".");
+    local name = weapon:GetClass()
+    if weapon.GetPrintName then name = weapon:GetPrintName() end
+    U1HUD:SetPickupMessage(DEFAULT_PREFIX .. language.GetPhrase(name) .. ".");
   end);
 
 end

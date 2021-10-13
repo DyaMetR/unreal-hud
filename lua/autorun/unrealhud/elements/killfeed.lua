@@ -156,6 +156,8 @@ if CLIENT then
     local dmgType = net.ReadFloat();
     local weapon = net.ReadString();
     local vName, aName = language.GetPhrase(victim), language.GetPhrase(attacker);
+    local isVictimNPC = net.ReadBool();
+    if (isVictimNPC and not U1HUD:IsKillFeedForNPCsEnabled()) then return; end
     if (U1HUD:WeaponHasQuote(weapon)) then dmgType = weapon; end
     U1HUD:AddKill(vName, damage, aName, deathBy, dmgType);
   end);
@@ -230,6 +232,7 @@ if SERVER then
     net.WriteFloat(deathBy);
     net.WriteFloat(dmgType);
     net.WriteString(weapon);
+    net.WriteBool(IsValid(ent) and ent:IsNPC())
     net.Broadcast();
   end
 
